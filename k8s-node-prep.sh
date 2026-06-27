@@ -41,7 +41,8 @@ containerd config default | sudo tee /etc/containerd/config.toml >/dev/null
 
 # Set SystemdCgroup to true and update Sandbox image to 3.10
 sudo sed -i 's/SystemdCgroup = false/SystemdCgroup = true/g' /etc/containerd/config.toml
-sudo sed -i 's|registry.k8s.io/pause:3.8|registry.k8s.io/pause:3.10.1|g' /etc/containerd/config.toml
+# Safely replace the sandbox image regardless of the original version number
+sudo sed -i 's|sandbox_image = ".*"|sandbox_image = "registry.k8s.io/pause:3.10"|g' /etc/containerd/config.toml
 
 sudo systemctl restart containerd
 sudo systemctl enable containerd
