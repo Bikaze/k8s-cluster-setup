@@ -2,7 +2,7 @@
 # ---------------------------------------------------------
 # CKA Lab: Node Preparation (Official Containerd Repo)
 # ---------------------------------------------------------
-
+set -e
 # 1. Permanent Swap Disable
 sudo swapoff -a
 sudo sed -i.bak '/swap/s/^/#/' /etc/fstab
